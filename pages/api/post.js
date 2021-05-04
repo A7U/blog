@@ -13,14 +13,14 @@ import moment from 'moment';
 export default (req, res) => {
     let { username, title, message } = req.body;
     let img = req.body.img
-
+    let fixedTitle = title.replace(' ', '-')
     let date = moment(new Date).format('YYYY-DD-MM')
     if(req.method === 'POST') {
-        con.query(`SELECT * FROM posts WHERE title = ?`, [title], async (err, rows) => {
+        con.query(`SELECT * FROM posts WHERE title = ?`, [fixedTitle], async (err, rows) => {
             if(err) throw err;
             if(rows.length < 1) {
-                await con.query(`INSERT INTO posts (poster, title, message, img, date) VALUES (?, ?, ?, ?, ?)`, [username, title, message, `/images/${img}`, date])
-                res.redirect(`/post/${title}`)
+                await con.query(`INSERT INTO posts (poster, title, message, img, date) VALUES (?, ?, ?, ?, ?)`, [username, fixedTitle, message, `/images/${img}`, date])
+                res.redirect(`/post/${fixedTitle}`)
             } else {
                 res.redirect('/post/create')
             }

@@ -30,8 +30,9 @@ function Posts() {
     return(
     <>
         {Post.map(e => {
+            let title = e.title.replace(/-/g, ' ')
                     return(
-            <div key={e.title}>
+            <div key={title}>
                 <Head>
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin={"anonymous"}></link>
                 </Head>
@@ -39,7 +40,7 @@ function Posts() {
                     <Link href={`/post/${e.title}`}>
                         <div className="hover:shadow-2xl p-6 text-center bg-gray-800 w-6/12 transition duration-200 ease-in-out transform hover:scale-105">
                             <img src={"https://via.placeholder.com/1920"} width="500" height={"500"} className={"w-96 p-4 mx-auto"}/>
-                            <a className={"font-bold text-5xl"}>{e.title}</a>
+                            <a className={"font-bold text-5xl"}>{title}</a>
                             <div className={'p-2 text-gray-400'}>
                                 <div>
                                     <i className={"fas fa-clock"}/> {moment(e.date).format('DD MMM YYYY')} 
