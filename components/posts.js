@@ -21,11 +21,7 @@ function Posts() {
 
     let Post = Object.values(posts)
     if(loading === true) {
-        return(
-            Post.map(() => {
-                return(<Loading />)
-            })
-        )
+        return(<Loading />)
     }
     return(
     <>
