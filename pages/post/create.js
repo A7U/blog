@@ -12,7 +12,7 @@ export default function Create() {
 
       <Navigation />
       <main>
-          <div className={"flex flex-row justify-center text-center p-12 m-12"}>
+          <div className={"flex flex-row justify-center p-12 m-12"}>
             <CreatePost/>
           </div>
       </main>

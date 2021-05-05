@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navigation from '../../components/nav';
 import 'react-quill/dist/quill.snow.css';
+import ReactMarkdown from 'react-markdown'
 
 const Post = () => {
     const router = useRouter();
@@ -25,6 +26,7 @@ const Post = () => {
 
             <Head>
                 <title>Blog - Ok</title>
+                <link rel="stylesheet" href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css"></link>
             </Head>
 
             <Navigation/>
@@ -33,7 +35,8 @@ const Post = () => {
             <div className={"grid shadow-2xl p-6 max-w-4xl px-12"}>
                 <h1 className={"text-white text-bold text-8xl text-center p-6"}>{title}</h1>
                 <div className={"text-white ql-align-center"}>
-                    <div dangerouslySetInnerHTML={{__html: p.message}}></div>
+                    {/* <div dangerouslySetInnerHTML={{__html: p.message}}></div> */}
+                    <ReactMarkdown>{p.message}</ReactMarkdown>
                 </div>
             </div>
             </div>

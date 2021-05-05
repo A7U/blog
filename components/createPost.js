@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
+
 function createPost() {
   const [value, setValue] = useState("");
 
@@ -54,13 +56,14 @@ function createPost() {
 
               <div className={"grid grid-cols-1 gap-4"}>
                 <label htmlFor="message" className={"text-white"}>Message</label>
-                <div className={"bg-white resize transition duration-200 ease-in-out transform hover:scale-105"}>
-                  <ReactQuill value={value} onChange={setValue} placeholder={"Write something..."} modules={modules} formats={formats} />
+                <div className={"bg-white flex"}>
+                  {/* <ReactQuill value={value} onChange={setValue} placeholder={"Write something..."} modules={modules} formats={formats} /> */}
+                  <SimpleMDE value={value} onChange={setValue} placeholder={"Write something..."} />
                 </div>
                 <input type="hidden" name="message" id="message" value={value}></input>
               </div>
 
-              <div className={"p-8 transition duration-200 ease-in-out transform hover:scale-105"}>
+              <div className={"p-8"}>
                 <label htmlFor="img" className={'px-3 text-white'}>Image:</label>
                 <input type="file" id="img" name="img" className={"text-white"}></input>
                 
