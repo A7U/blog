@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Posts from '../components/posts'
 import Navigation from '../components/nav';
-import 'react-notifications/lib/notifications.css';
 
 export default function Home() {
 
