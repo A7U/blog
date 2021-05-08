@@ -3,17 +3,19 @@ import Link from 'next/link'
 import Head from 'next/head';
 import moment from 'moment';
 import Loading from './postLoading';
+import Broken from './notFound';
 
 function Posts() {
-    const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
     const [posts, setPosts] = useState("");
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [notFound, setnotFound] = useState(false);
     useEffect(() => {
         setLoading(true)
         fetch('/api/fetch')
         .then(res => res.json())
         .then(async json => {
+        if(json.length < 1) { setLoading(false);  setnotFound(true)}
          await setPosts(json)
          setLoading(false)
         })
@@ -22,6 +24,9 @@ function Posts() {
     let Post = Object.values(posts)
     if(loading === true) {
         return(<Loading />)
+    }
+    if(notFound === true) {
+        return(<Broken />)
     }
     return(
     <>
@@ -34,14 +39,16 @@ function Posts() {
                 </Head>
                 <div className={"flex flex-row text-white items-center justify-center p-8 w-full "}>
                     <Link href={`/post/${e.title}`}>
-                        <div className="hover:shadow-2xl p-6 text-center bg-gray-800 w-6/12 transition duration-200 ease-in-out transform hover:scale-105">
-                            <img src={"https://via.placeholder.com/1920"} width="500" height={"500"} className={"w-96 p-4 mx-auto"}/>
-                            <a className={"font-bold text-5xl"}>{title}</a>
-                            <div className={'p-2 text-gray-400'}>
-                                <div>
-                                    <i className={"fas fa-clock"}/> {moment(e.date).format('DD MMM YYYY')} 
+                        <div className="hover:shadow-2xl text-center bg-gray-800 w-max transition duration-200 ease-in-out transform hover:scale-105">
+                            <img src={"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2Fc%2Fc%2F2%2F679702.jpg&f=1&nofb=1"} className={"max-w-4xl"}/>
+                            <div className={"p-4"}>
+                                <a className={"font-bold text-5xl"}>{title}</a>
+                                <div className={'py-2 text-gray-400'}>
+                                    <div>
+                                        <i className={"fas fa-clock"}/> {moment(e.date).format('DD MMM YYYY')} 
+                                    </div>
+                                    <i className={"far fa-user"}/> {e.poster}
                                 </div>
-                                <i className={"far fa-user"}/> {e.poster}
                             </div>
                         </div>
                     </Link>

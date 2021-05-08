@@ -8,7 +8,7 @@ let con = mysql.createPool({
 });
 
 export default (req, res) => {
-    con.query(`SELECT * FROM posts ORDER BY date ASC`, async (err, rows) => {
+    con.query(`SELECT * FROM posts ORDER BY date DESC`, async (err, rows) => {
         if(err) throw err;
         res.send(rows)
     })

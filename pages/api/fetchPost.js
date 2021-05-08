@@ -11,7 +11,7 @@ export default (req, res) => {
     let { title } = req.query;
     con.query(`SELECT * FROM posts WHERE title = ?`, [title], (err, rows) => {
         if(err) console.error(err)
-        res.send(rows)
+        return res.send(rows)
     })
 }
 

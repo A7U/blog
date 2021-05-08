@@ -1,50 +1,11 @@
 import React, { useState } from "react";
-// import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import 'react-quill/dist/quill.snow.css';
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 function createPost() {
   const [value, setValue] = useState("");
-
-  // hljs.configure({
-  //   languages: ['javascript', 'ruby', 'python']
-  // });
-
-  const modules = {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-    
-      [{ 'header': 1 }, { 'header': 2 }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'indent': '-1'}, { 'indent': '+1' }],
-    
-      [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    
-      [{ 'color': [] }, { 'background': [] }], 
-      [{ 'font': [] }],
-      [{ 'align': [] }],
-    
-      ['clean']   
-    ],
-    clipboard: {
-      matchVisual: false,
-    },
-    // syntax: true
-  }
-
-  let formats = [
-    'header', 'font', 'size',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video', 'color', 'code', 'background',
-    'link', 'syntax', 'highlight', 'code-block', 'align', 'clean'
-  ]
-
+  
   return (
             <form action="/api/post" method="POST">
               <div className={"grid grid-cols-1 gap-4"}>
@@ -57,7 +18,6 @@ function createPost() {
               <div className={"grid grid-cols-1 gap-4"}>
                 <label htmlFor="message" className={"text-white"}>Message</label>
                 <div className={"bg-white flex"}>
-                  {/* <ReactQuill value={value} onChange={setValue} placeholder={"Write something..."} modules={modules} formats={formats} /> */}
                   <SimpleMDE value={value} onChange={setValue} placeholder={"Write something..."} />
                 </div>
                 <input type="hidden" name="message" id="message" value={value}></input>
@@ -66,7 +26,6 @@ function createPost() {
               <div className={"p-8"}>
                 <label htmlFor="img" className={'px-3 text-white'}>Image:</label>
                 <input type="file" id="img" name="img" className={"text-white"}></input>
-                
               </div>
               </div>
 
