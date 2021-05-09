@@ -17,7 +17,6 @@ export default (req, res) => {
     let fixedTitle = title.replace(/ +/g, '-')
     let date = moment(new Date).format('YYYY-DD-MM')
     if(req.method === 'POST') {
-        console.log(con)
         try {
             con.query(`SELECT * FROM posts WHERE title = ?`, [fixedTitle], async (err, rows) => {
                 if(err) console.log(err)
