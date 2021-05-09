@@ -18,7 +18,7 @@ DB_PASS=
 DB_NAME=
 ```
 Create table:
-`CREATE TABLE posts (int NOT NULL AUTO_INCREMENT PRIMARY KEY, poster VARCHAR(255), title VARCHAR(255), message VARCHAR(2560), img VARCHAR(100), date date)`
+`CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, poster VARCHAR(255), title VARCHAR(255), message VARCHAR(2560), img VARCHAR(100), date date);`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
