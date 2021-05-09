@@ -14,7 +14,7 @@ import moment from 'moment';
 export default (req, res) => {
     let { username, title, message } = req.body;
     let img = req.body.img
-    let fixedTitle = title.replace(/ +/g, '-')
+    let fixedTitle = title.replace(/[? ]/g, '-')
     let date = moment(new Date).format('YYYY-DD-MM')
     if(req.method === 'POST') {
         try {
